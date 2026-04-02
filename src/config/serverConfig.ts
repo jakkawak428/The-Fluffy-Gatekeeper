@@ -1,3 +1,4 @@
+export let version = "1.2.3";
 export const SJCSD_SERVER = "1282698582121644102";
 export const NEW_SJCSD_SERVER = "1483630182387421236";
 export const FFF_SERVER = "1338528968080494675";

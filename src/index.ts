@@ -13,8 +13,6 @@ config({ quiet: true })
 
 const djs = Discord as any
 
-// bazinga
-
 const Events = djs.Events ?? {
     ClientReady: "ready",
     InteractionCreate: "interactionCreate",

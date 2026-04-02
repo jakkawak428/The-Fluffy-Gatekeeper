@@ -1,4 +1,5 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
+import { version } from "../config/serverConfig";
 
 export const command = new SlashCommandBuilder()
     .setName("about")
@@ -14,7 +15,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
             { name: "Server", value: "This bot runs exclusively in the FFF server where friends gather to chat and have fun." },
             { name: "Usage", value: "Use /help for a list of commands! Please, give @jakkawak428 any feedback on the bot!" }
         )
-        .setFooter({ text: "Version 1.2.3" });
+        .setFooter({ text: `Version ${version}` });
 
     await interaction.reply({ embeds: [embed] });
 }
