@@ -1,0 +1,85 @@
+import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
+
+export const command = new SlashCommandBuilder()
+  .setName('summarize')
+  .setDescription('Summarize recent messages in this channel')
+  .addIntegerOption(option =>
+    option
+      .setName('count')
+      .setDescription('Number of messages to summarize (default: 50, max: 100)')
+      .setRequired(false)
+      .setMinValue(10)
+      .setMaxValue(100)
+  );
+
+export async function execute(interaction: ChatInputCommandInteraction) {
+  await interaction.deferReply();
+
+  const count = interaction.options.getInteger('count') ?? 50;
+  const channel = interaction.channel;
+
+  if (!channel || !('messages' in channel)) {
+    return interaction.editReply({
+      content: '❌ This command can only be used in text channels.',
+    });
+  }
+
+  try {
+    // Fetch recent messages
+    const messages = await channel.messages.fetch({ limit: count });
+    const sortedMessages = Array.from(messages.values()).reverse();
+
+    if (sortedMessages.length === 0) {
+      return interaction.editReply({
+        content: '❌ No messages found in this channel.',
+      });
+    }
+
+    // Collect statistics
+    const authors = new Map<string, number>();
+    const messageCount = sortedMessages.length;
+    let totalLength = 0;
+
+    sortedMessages.forEach(msg => {
+      if (!msg.author.bot) {
+        authors.set(msg.author.username, (authors.get(msg.author.username) ?? 0) + 1);
+        totalLength += msg.content.length;
+      }
+    });
+
+    // Get top participants
+    const topParticipants = Array.from(authors.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([name, count]) => `**${name}** (${count})`)
+      .join(', ');
+
+    // Get sample messages
+    const samples = sortedMessages
+      .filter(msg => msg.content.length > 0 && !msg.author.bot)
+      .slice(-3)
+      .map(msg => `> ${msg.author.username}: ${msg.content.substring(0, 100)}${msg.content.length > 100 ? '...' : ''}`)
+      .join('\n');
+
+    // Create summary embed
+    const embed = new EmbedBuilder()
+      .setColor(0x0099ff)
+      .setTitle(`📊 Channel Summary - Last ${messageCount} Messages`)
+      .addFields(
+        { name: '📝 Message Count', value: messageCount.toString(), inline: true },
+        { name: '📏 Avg Message Length', value: (totalLength / messageCount).toFixed(1) + ' chars', inline: true },
+        { name: '👥 Active Participants', value: authors.size.toString(), inline: true },
+        { name: '⭐ Top Contributors', value: topParticipants || 'No messages', inline: false },
+        { name: '💬 Recent Messages', value: samples || 'No messages', inline: false }
+      )
+      .setFooter({ text: 'Summarized from recent messages' })
+      .setTimestamp();
+
+    return interaction.editReply({ embeds: [embed] });
+  } catch (error) {
+    console.error('Error summarizing messages:', error);
+    return interaction.editReply({
+      content: '❌ An error occurred while summarizing the conversation.',
+    });
+  }
+}

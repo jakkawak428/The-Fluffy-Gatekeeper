@@ -1,0 +1,28 @@
+FFF Guard 1.0.0 (10-9-2025)
+    Initial Release
+    Grants a role to a user if that user joins from a specific server.
+
+The Fluffy Gatekeeper 1.1.0 (2-26-2026)
+    Renamed from "FFF Guard" to "The Fluffy Gatekeeper"
+    Now supports commands
+    Added full Truth or Dare system
+    Added full leveling system
+    Welcome, goodbye, and ban messages.
+
+The Fluffy Gatekeeper 1.2.0
+    Switched from "ts-node-dev" to "node dist" - Now compiles TypeScript into JavaScript which the bot then runs off of.
+    Added "suggest" command, for adding TOD prompts.
+    Fixed sending ping messages when replying to a Truth or Dare prompt.
+    Remembers birthdays! (manually placed)
+    Bot will no longer ping a user leveling up when venting; instead will make a statement without pinging the user.
+
+The Fluffy Gatekeeper 1.2.1
+    Switched back to "ts-node-dev". Node DIST was messy.
+    Added Blackjack.
+
+The Fluffy Gatekeeper 1.2.2
+    Updated Discord.js to v14.11.0, which required some changes to the codebase.
+
+The Fluffy Gatekeeper 1.2.3
+    Added "/archive" command, which moves the current channel to the FFF Channel Archive category. (Staff only)
+    Added "/restore" command, which restores a channel from the archive to a specified category. (Staff only)

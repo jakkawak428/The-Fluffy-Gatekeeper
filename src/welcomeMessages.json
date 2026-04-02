@@ -1,0 +1,14 @@
+{
+  "messages": [
+    "Welcome to FFF, {user}!",
+    "Glad you made it, {user}! Welcome to FFF.",
+    "Hey {user}, welcome in!",
+    "Everyone welcome {user} to FFF!",
+    "Happy to have you here, {user}!",
+    "{user} just arrived - welcome to FFF!",
+    "A wild {user} appeared. Welcome!",
+    "Welcome aboard, {user}!",
+    "Hey there, {user}, welcome to the party!",
+    "Look what the cat dragged in... It's {user}! Welcome to FFF!"
+  ]
+}

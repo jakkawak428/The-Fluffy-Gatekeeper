@@ -1,0 +1,2 @@
+Run with "npm start" or "npm run dev" (uses ts-node-dev, no build step needed).
+To build compiled output to dist/: "npm run build". (don't need this, but it can be used to run the bot with "node dist" instead of "ts-node-dev")

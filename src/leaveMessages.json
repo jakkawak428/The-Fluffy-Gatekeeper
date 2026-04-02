@@ -1,0 +1,26 @@
+{
+  "casualGoodbye": [
+    "Later, {user}!",
+    "See you around, {user}.",
+    "{user} has left the server. Catch you next time.",
+    "Take care, {user}!",
+    "{user} dipped. Hope to see you again.",
+    "Hope you had fun, {user}! See you later.",
+    "May {user} find peace outside of this server.",
+    "Goodbye, {user}! Thanks for being here.",
+    "Farewell, {user}! Until we meet again.",
+    "Adios, {user}! Safe travels.",
+    "In case you come back, {user}, we'll be here, and I saved your levels..."
+  ],
+  "mockingLeave": [
+    "{user} got yeeted. Tragic.",
+    "{user} speedran consequences.",
+    "{user} is gone. The server survives.",
+    "{user} took an L and left.",
+    "{user} got forcefully removed. Ouch.",
+    "Hope the ban speedrun was worth it, {user}.",
+    "Sorry, {user}, it appears you weren't welcome here.",
+    "Out you go, {user}. Don't let the door hit you on the way out.",
+    "Maybe you're a superstar in the Bunny Girls server, {user}."
+  ]
+}

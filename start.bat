@@ -1,0 +1,3 @@
+@echo off
+echo Starting bot...
+node_modules\.bin\ts-node-dev --respawn --transpile-only src\index.ts
