@@ -86,7 +86,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
             // User confirmed - apply timeout
             await member.roles.add(TIMEOUT_ROLE);
             await buttonInteraction.update({
-                content: `✅ Applied timeout to ${targetUser}`,
+                content: `✅ Applied third warning and timeout to ${targetUser} for reason: **${reason}**`,
                 components: []
             });
 

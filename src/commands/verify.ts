@@ -63,6 +63,8 @@ async function getLatestApplicationAcceptedState(interaction: ChatInputCommandIn
 	return null;
 }
 
+// shortened labels to accomodate for Discord's character limit. (45 i believe..)
+
 const APPLICATION_FIELDS = [
 	{ id: "application_q1", label: "Restate at least two of the rules.", style: TextInputStyle.Short },
 	{ id: "application_q2", label: "Will you respect others?", style: TextInputStyle.Short },

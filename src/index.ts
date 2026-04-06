@@ -8,6 +8,7 @@ import { getRandomCasualGoodbyeMessage, getRandomMockingLeaveMessage } from "./u
 import { getRandomPingMessage } from "./utils/pingStore"
 import { sendBirthdayMessages } from "./utils/birthdayStore"
 import { FFF_SERVER, PENDING_APPLICATIONS, SJCSD_ROLE, SJCSD_SERVER, NEW_SJCSD_SERVER, VERIFIED_ROLE, WELCOME_CHANNEL } from "./config/serverConfig"
+import { version } from "./config/serverConfig"
 
 config({ quiet: true })
 
@@ -123,6 +124,7 @@ client.once(Events.ClientReady, async () => {
 
     scheduleBirthdayCheck()
     console.log("Birthday checker scheduled")
+    console.log(`Fluffy Gatekeeper is running! (Version ${version})`)
 })
 
 client.on(Events.InteractionCreate, async (interaction) => {

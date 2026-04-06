@@ -13,7 +13,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         .addFields(
             { name: "Purpose", value: "Leveling, entertainment, and community engagement." },
             { name: "Server", value: "This bot runs exclusively in the FFF server where friends gather to chat and have fun." },
-            { name: "Usage", value: "Use /help for a list of commands! Please, give @jakkawak428 any feedback on the bot!" }
+            { name: "Usage", value: "Use /help for a list of commands! Please, give @jakkawak428 any feedback on the bot!" },
+            { name: "Web", value: "If you would like to visit our website, please feel free to check it out at [Fun Fan Fanatics.com](https://funfanfanatics.com)!" }
         )
         .setFooter({ text: `Version ${version}` });
 
