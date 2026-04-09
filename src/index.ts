@@ -7,7 +7,7 @@ import { getRandomWelcomeMessage } from "./utils/welcomeStore"
 import { getRandomCasualGoodbyeMessage, getRandomMockingLeaveMessage } from "./utils/leaveStore"
 import { getRandomPingMessage } from "./utils/pingStore"
 import { sendBirthdayMessages } from "./utils/birthdayStore"
-import { FFF_SERVER, PENDING_APPLICATIONS, SJCSD_ROLE, SJCSD_SERVER, NEW_SJCSD_SERVER, VERIFIED_ROLE, WELCOME_CHANNEL } from "./config/serverConfig"
+import { FFF_SERVER, PENDING_APPLICATIONS, SJCSD_ROLE, SJCSD_SERVER, NEW_SJCSD_SERVER, VERIFIED_ROLE, WELCOME_CHANNEL, ELIJAHS_USER_ID, ALEX_USER_ID, KARLY_USER_ID, PAINT_USER_ID, LUCA_USER_ID, WAARD_USER_ID, THINGY_USER_ID } from "./config/serverConfig"
 import { version } from "./config/serverConfig"
 
 config({ quiet: true })
@@ -219,9 +219,149 @@ client.on(Events.MessageCreate, async (message) => {
     if (message.author.bot) return
     if (!message.guild) return
     if (message.guild.id !== FFF_SERVER) return
+    if (message.channel.id === WELCOME_CHANNEL) return
+    if (message.channel.id === PENDING_APPLICATIONS) return
 
     // Check if the bot was mentioned
     if (message.mentions.has(client.user?.id || "")) {
+        
+    if (message.author.id === ALEX_USER_ID) {
+        const messages = [
+            `Shut up, Alex.`,
+            `What do you want, Alex?`,
+            `Go back to reading yuri.`,
+            `Go clean your room, Alex.`,
+            `No, Alex, I don't have yuri stories for you.`
+        ]
+
+        const integer = Math.random()
+        if (integer > 0.5) { 
+            const msg = messages[Math.floor(Math.random() * messages.length)]
+            await message.reply(msg)
+            return
+        }
+
+        if (integer < 0.5) {
+            await message.reply(getRandomPingMessage()).catch(() => null)
+            return
+        }
+    }
+
+    if (message.author.id === KARLY_USER_ID) {
+        const messages = [
+            `Shut up, Karly.`,
+            `Shut up, Daph.`,
+            `What do you want, Karly?`,
+            `What do you want, Daph?`,
+            `Go back to simping about Jacob..`,
+            `<@${PAINT_USER_ID}> Your girlfriend's annoying me.`,
+            `Shut up, local horny grandma.`
+        ]
+
+        const integer = Math.random()
+        if (integer > 0.5) { 
+            const msg = messages[Math.floor(Math.random() * messages.length)]
+            await message.reply(msg)
+            return
+        }
+
+        if (integer < 0.5) {
+            await message.reply(getRandomPingMessage()).catch(() => null)
+            return
+        }
+    }
+    
+    if (message.author.id === PAINT_USER_ID) {
+        const messages = [
+            `Shut up, paint.`,
+            `Don't you have a girlfriend you should be gooning to?`,
+            `Name five planes.`,
+            `Name five guns.`,
+            `Name five dinosaurs.`,
+            `Why is this autistic twink bothering me?`,
+            `<@${KARLY_USER_ID}> Your boyfriend's annoying me.`
+        ]
+
+        const integer = Math.random()
+            if (integer > 0.5) {
+                const msg = messages[Math.floor(Math.random() * messages.length)]
+                await message.reply(msg)
+                return
+            }
+
+            if (integer < 0.5) {
+                await message.reply(getRandomPingMessage()).catch(() => null)
+                return
+            }
+    }
+
+    if (message.author.id === LUCA_USER_ID) {
+        const messages = [
+            `If it isn't paint eater the horny one.`,
+            `Go goon to Jack.`,
+            `Why are you of all people pinging me?`,
+            `Leave me alone. Go play Adopt Me.`,
+            `Shouldn't you be on Adopt Me?`,
+        ]
+
+        const integer = Math.random()
+            if (integer > 0.5) {
+                const msg = messages[Math.floor(Math.random() * messages.length)]
+                await message.reply(msg)
+                return
+            }
+
+            if (integer < 0.5) {
+                await message.reply(getRandomPingMessage()).catch(() => null)
+                return
+            }   
+    }
+
+    if (message.author.id === WAARD_USER_ID) {
+        const messages = [
+            `Shut up, Waard.`,
+            `Don't you have buildings you should be exploding?`,
+            `Go buy Jack more Monsters.`,
+            `What do you want, money boy?`,
+        ]
+
+        const integer = Math.random()
+            if (integer > 0.5) {
+                const msg = messages[Math.floor(Math.random() * messages.length)]
+                await message.reply(msg)
+                return
+            }
+
+            if (integer < 0.5) {
+                await message.reply(getRandomPingMessage()).catch(() => null)
+                return
+            }
+
+    }
+
+    if (message.author.id === THINGY_USER_ID) {
+        const messages = [
+            `Go bother Alex.`,
+            `I don't speak California.`,
+            `Go bother Hamfil.`,
+            `Don't you have work to do?`,
+            `Shut up, "Ballooniplier".`,
+            `Hi there, uhh... I forgot your pronouns.`
+        ]
+
+        const integer = Math.random()
+            if (integer > 0.5) {
+                const msg = messages[Math.floor(Math.random() * messages.length)]
+                await message.reply(msg)
+                return
+            }
+
+            if (integer < 0.5) {
+                await message.reply(getRandomPingMessage()).catch(() => null)
+                return
+            }
+    }
+
         // Don't send random message if replying to a Truth/Dare/WYR/Paranoia prompt
         const isReplyToPrompt = message.reference && 
             message.reference.messageId && 
@@ -276,6 +416,19 @@ client.on(Events.GuildMemberAdd, async (member) => {
         return
     }
 
+    if (member.user.id === ELIJAHS_USER_ID) {
+        const messages = [
+            `Welcome back, <@${ELIJAHS_USER_ID}>. Enjoy your visit.`,
+            `<@${ELIJAHS_USER_ID} is stopping by.`,
+            `Welcome back to FFF, <@${ELIJAHS_USER_ID}>. Have fun.`,
+            `Welcome back, Eli! Enjoy your visit!`
+        ]
+
+        const message = messages[Math.floor(Math.random() * messages.length)]
+        await channel.send(message)
+        return
+    }
+
     await channel.send(getRandomWelcomeMessage(member.toString()))
 })
 
@@ -322,6 +475,18 @@ client.on(Events.GuildMemberRemove, async (member) => {
 
     if (wasKickedOrBanned) {
         await channel.send(getRandomMockingLeaveMessage(member.toString()))
+        return
+    }
+
+    if (member.user.id === ELIJAHS_USER_ID) {
+        const messages = [
+            `Thanks for stopping by, <@${ELIJAHS_USER_ID}>. We'll see you later.`,
+            `Hope you enjoyed your visit, <@${ELIJAHS_USER_ID}>. See you in a few weeks.`,
+            `Thanks for another great time, <@${ELIJAHS_USER_ID}>! See you soon!`
+        ]
+
+        const message = messages[Math.floor(Math.random() * messages.length)]
+        await channel.send(message)
         return
     }
 
