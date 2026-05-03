@@ -7,6 +7,7 @@ import { getRandomWelcomeMessage } from "./utils/welcomeStore"
 import { getRandomCasualGoodbyeMessage, getRandomMockingLeaveMessage } from "./utils/leaveStore"
 import { getRandomPingMessage } from "./utils/pingStore"
 import { sendBirthdayMessages } from "./utils/birthdayStore"
+import { sendAnniversaryMessages } from "./utils/anniversaryStore"
 import { FFF_SERVER, PENDING_APPLICATIONS, SJCSD_ROLE, SJCSD_SERVER, NEW_SJCSD_SERVER, VERIFIED_ROLE, WELCOME_CHANNEL, ELIJAHS_USER_ID, ALEX_USER_ID, KARLY_USER_ID, PAINT_USER_ID, LUCA_USER_ID, WAARD_USER_ID, THINGY_USER_ID } from "./config/serverConfig"
 import { version } from "./config/serverConfig"
 
@@ -122,8 +123,32 @@ client.once(Events.ClientReady, async () => {
         }, timeUntilMidnight)
     }
 
+    // Schedule anniversary message checker to run daily at noon
+    function scheduleAnniversaryCheck(): void {
+        const now = new Date()
+        const today = new Date(now)
+        today.setHours(12, 0, 0, 0)
+
+        let timeUntilNoon = today.getTime() - now.getTime()
+        
+        // If it's already past noon, schedule for tomorrow at noon
+        if (timeUntilNoon <= 0) {
+            today.setDate(today.getDate() + 1)
+            timeUntilNoon = today.getTime() - now.getTime()
+        }
+
+        setTimeout(() => {
+            sendAnniversaryMessages(client)
+            // After first check, run every 24 hours
+            setInterval(() => {
+                sendAnniversaryMessages(client)
+            }, 24 * 60 * 60 * 1000)
+        }, timeUntilNoon)
+    }
+
     scheduleBirthdayCheck()
-    console.log("Birthday checker scheduled")
+    scheduleAnniversaryCheck()
+    console.log("Birthday and Anniversary checkers scheduled")
     console.log(`Fluffy Gatekeeper is running! (Version ${version})`)
 })
 

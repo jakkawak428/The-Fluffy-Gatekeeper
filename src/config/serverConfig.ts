@@ -1,4 +1,4 @@
-export let version = "1.2.4";
+export let version = "1.2.5";
 
 // Servers
 
